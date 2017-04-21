@@ -1,7 +1,8 @@
 exports.up = function(knex) {
-  return knex.schema.createTable('booking_status')
-  table.increments();
-  table.string('status').notNullable();
+  return knex.schema.createTable('booking_status', table => {
+    table.increments();
+    table.string('status').notNullable();
+  })
 };
 
 exports.down = function(knex) {
