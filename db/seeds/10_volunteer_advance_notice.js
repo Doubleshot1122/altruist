@@ -1,10 +1,10 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('volunteer_advanceNotice').del()
+  return knex('volunteer_advance_notice').del()
     .then(function () {
       // Inserts seed entries
-      return knex('volunteer_advanceNotice').insert([
+      return knex('volunteer_advance_notice').insert([
         {id: 1, notice: 1},
         {id: 2, notice: 2},
         {id: 3, notice: 3},
@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
       ]);
     }).then(() => {
       return knex.raw(
-        "SELECT setval('volunteer_advanceNotice_id_seq', (SELECT MAX(id) FROM volunteer_advanceNotice));"
+        "SELECT setval('volunteer_advance_notice_id_seq', (SELECT MAX(id) FROM volunteer_advance_notice));"
       );
     });
 };

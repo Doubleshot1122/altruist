@@ -4,7 +4,7 @@ exports.seed = function(knex, Promise) {
   return knex('non_profit_types').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
+      return knex('non_profit_types').insert([
         {id: 1, type: 'Nursing Home'},
         {id: 2, type: 'Hospital'},
         {id: 3, type: 'Community center'}

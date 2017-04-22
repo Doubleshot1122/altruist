@@ -12,9 +12,5 @@ exports.seed = function(knex) {
         {skill_id: 2, volunteer_id: 4},
         {skill_id: 1, volunteer_id: 2}
       ]);
-    }).then(() => {
-      return knex.raw(
-        "SELECT setval('volunteers_skills_id_seq', (SELECT MAX(id) FROM volunteers_skills));"
-      );
-    });
-};
+    })
+}; 
