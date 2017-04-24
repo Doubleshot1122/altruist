@@ -11,9 +11,18 @@ exports.seed = function(knex, Promise) {
         startDateTime: '2017-04-28 19:00:00 UTC', endDateTime: '2017-04-28 21:00:00 UTC',
         status: 1,
         specialDirections: 'Room 10',
-        volunteerJobAssessment: ''},
-        {id: 2, volunteer_id: 2, non_profit_id: 2, startDateTime: '2017-05-05 14:00:00 UTC', endDateTime: '2017-05-05 16:00:00 UTC', status: 1, specialDirections: 'Baker room, check-in at front desk 10 minutes prior', volunteerJobAssessment: ''},
-
+        volunteerJobAssessment: ''
+      },
+      {
+        id: 2,
+        volunteer_id: 2,
+        non_profit_id: 2,
+        startDateTime: '2017-05-05 14:00:00 UTC',
+        endDateTime: '2017-05-05 16:00:00 UTC',
+        status: 1,
+        specialDirections: 'Baker room, check-in at front desk 10 minutes prior',
+        volunteerJobAssessment: ''
+      }
       ]);
     }).then(() => {
       return knex.raw(
