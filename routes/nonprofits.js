@@ -2,9 +2,11 @@
 const express = require('express');
 const knex = require('../db');
 const router = express.Router();
+const latlong = require('./miscellaneous')
 
 /* GET home page. */
 router.get('/register', function(req, res, next) {
+  console.log(latlong('55436'));
   res.render('nonprofit/login', {title : 'Register'});
 });
 router.get('/login', function(req, res, next) {
@@ -14,13 +16,14 @@ router.get('/register/:username', function(req, res, next) {
   res.render('nonprofit/edit', {title : 'Create profile', action : 'create'});
 });
 router.get('/profile/:username', function(req, res, next) {
-  res.render('nonprofit/profile' );
+
+  res.render('nonprofit/profile', {title : 'Profile', action : 'view'});
 });
 router.get('/edit/:username', function(req, res, next) {
   res.render('nonprofit/edit', {title : 'Edit profile', action : 'edit'});
 });
 router.get('/search', function(req, res, next) {
-  res.render('nonprofit/search');
+  res.render('nonprofit/search' );
 });
 router.get('/search/:username', function(req, res, next) {
   res.render('nonprofit/search', {results});
