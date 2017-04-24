@@ -12,6 +12,8 @@ exports.up = (knex) => {
     table.string('city').notNullable()
     table.string('state', 'char(2)').notNullable()
     table.integer('zip').notNullable()
+    table.decimal('lat',10,6).notNullable()
+    table.decimal('long',10,6).notNullable()
     table.string('comments').notNullable()
     table.integer('user_id').notNullable()
     table.timestamps(true, true)
@@ -21,4 +23,3 @@ exports.up = (knex) => {
 exports.down = (knex) => {
   return knex.schema.dropTable('non_profits')
 }
- 

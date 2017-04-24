@@ -29,7 +29,7 @@ router.get('/dashboard', function(req, res, next) {
   res.render('nonprofit/dashboard');
 });
 router.post('/profile/:username', function(req, res, next) {
-  res.redirect(`nonprofits/profile/${username}`,);
+  res.redirect(`nonprofits/profile/${username}`);
 });
 router.post('/booking', function(req, res, next) {
   res.redirect(`nonprofits/search/${username}`);

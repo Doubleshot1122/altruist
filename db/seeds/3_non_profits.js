@@ -16,6 +16,8 @@ exports.seed = function(knex) {
         city: 'seattle',
         state: 'WA',
         zip: 98104,
+        lat: 47.6015566,
+        long: -122.3323351,
         comments: 'Here are some comments',
         user_id: 2
       },{
@@ -31,6 +33,8 @@ exports.seed = function(knex) {
         city: 'seattle',
         state: 'WA',
         zip: 98104,
+        lat: 47.6015566,
+        long: -122.3323351,
         comments: 'Floor 1 - Denali room',
         user_id: 2
       }
