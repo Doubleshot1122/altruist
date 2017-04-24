@@ -4,20 +4,19 @@ const knex = require('../db');
 const router = express.Router();
 
 /* GET home page. */
-router.get('/register/:username', function(req, res, next) {
-  res.redirect(`volunteers/edit/${username}`, {action : 'create'});
-  //------is this different from the edit profile?-----
+router.get('/register/', function(req, res, next) {
+  res.redirect(`volunteers/edit/`);
 });
 
 
 router.get('/edit/:username', function(req, res, next) {
   let reqUserName = req.params.username;
   let query = knex('volunteers')
-  .select('volunteers.prefName', 'volunteers.firstName', 'volunteers.lastName', 'volunteers.age', 'volunteers.zip', 'volunteers.travelRadius', 'volunteers.advanceNotice', 'skills.type')
+  .select('volunteers.pref_name', 'volunteers.first_name', 'volunteers.last_name', 'volunteers.age', 'volunteers.zip', 'volunteers.travel_radius', 'volunteers.advance_notice', 'skills.type')
   .innerJoin('users', 'users.id', 'volunteers.user_id')
   .innerJoin('volunteers_skills', 'volunteers_skills.volunteer_id', 'volunteers.id')
   .innerJoin('skills', 'skills.id', 'volunteers_skills.skill_id')
-  .where('users.userName', reqUserName)
+  .where('users.user_name', reqUserName)
 
   query.then(editUserResult => {
     let skills = [];
@@ -25,8 +24,7 @@ router.get('/edit/:username', function(req, res, next) {
     editUserResult[0].skills = skills;
     console.log(editUserResult[0]);
   })
-  // res.render(`volunteers/edit/${username}`, {action : 'edit'});
-  res.render('index', {title : 'edit profile'});
+  res.render(`volunteer/edit/${reqUserName}`);
 });
 
 router.get('/dashboard/:username', function(req, res, next) {
