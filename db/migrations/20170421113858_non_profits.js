@@ -2,7 +2,7 @@ exports.up = (knex) => {
   return knex.schema.createTable('non_profits', table => {
     table.increments()
     table.string('name').notNullable()
-    table.integer('type').notNullable()
+    table.string('type').notNullable()
     table.string('description').notNullable()
     table.string('contactName').notNullable()
     table.string('contactEmail').notNullable()
