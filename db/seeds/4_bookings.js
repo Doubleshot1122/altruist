@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
         volunteer_id: 1,
         non_profit_id: 1,
         startDateTime: '2017-04-28 19:00:00 UTC', endDateTime: '2017-04-28 21:00:00 UTC',
-        status: 1,
+        status: 'booked',
         specialDirections: 'Room 10',
         volunteerJobAssessment: ''
       },
@@ -19,7 +19,7 @@ exports.seed = function(knex, Promise) {
         non_profit_id: 2,
         startDateTime: '2017-05-05 14:00:00 UTC',
         endDateTime: '2017-05-05 16:00:00 UTC',
-        status: 1,
+        status: 'booked',
         specialDirections: 'Baker room, check-in at front desk 10 minutes prior',
         volunteerJobAssessment: ''
       }
