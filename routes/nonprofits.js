@@ -29,7 +29,11 @@ router.get('/dashboard', function(req, res, next) {
   res.render('nonprofit/dashboard');
 });
 router.post('/profile/:username', function(req, res, next) {
+<<<<<<< HEAD
   // res.redirect(`nonprofits/profile/${username}`,);
+=======
+  res.redirect(`nonprofits/profile/${username}`);
+>>>>>>> ae68d30b6ceabdfd32a1ba7603bb40deb09741ed
 });
 router.post('/booking', function(req, res, next) {
   res.redirect(`nonprofits/search/${username}`);

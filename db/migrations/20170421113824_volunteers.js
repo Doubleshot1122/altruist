@@ -6,6 +6,8 @@ exports.up = (knex) => {
     table.string('prefName')
     table.integer('age')
     table.integer('zip').notNullable()
+    table.decimal('lat',10,6).notNullable()
+    table.decimal('long',10,6).notNullable()
     table.integer('travelRadius').notNullable()
     table.integer('advanceNotice').notNullable()
     table.integer('user_id').notNullable()
@@ -15,4 +17,4 @@ exports.up = (knex) => {
 
 exports.down = (knex) => {
   return knex.schema.dropTable('volunteers')
-} 
+}
