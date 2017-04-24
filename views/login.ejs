@@ -1,6 +1,13 @@
-<div class="well login-well">
-  <label class="login-label">Volunteer</label>
-  <a class="login-link" href="../volunteer/register"> Sign in</a>
-  <label class="login-label">Nonprofits</label>
-  <a class="login-link" href="../nonprofit/register"> Sign in</a>
-</div>
+<% layout('index')%>
+<h3>Login<h3>
+  <form method="GET" href="../dashboard">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" placeholder="Username">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-default">Login</button>
+  </form>

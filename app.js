@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var engine = require('ejs-locals');
+var override = require('method-override');
 
 var index = require('./routes/index');
 var volunteers = require('./routes/volunteers');
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(override('_method'));
 
 app.use('/', index);
 app.use('/volunteers', volunteers);

@@ -6,25 +6,38 @@ const latlong = require('./miscellaneous')
 
 /* GET home page. */
 router.get('/register', function(req, res, next) {
-  res.render('nonprofit/edit', {title : 'Register'});
-  // latlong('55436')
-  // .then(result => {
-  //   console.log(result);
-  //   res.render('nonprofit/login', {title : 'Register', result : result});
-  // })
+    res.render('nonprofit/edit', {title : 'Register Profile'});
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('nonprofit/login', {title : 'Login'});
+  res.render('login', {title : 'Login'});
+});
+
+router.get('/edit/:username', function(req, res, next) {
+  let user_name = req.params.username
+  knex.from('users').innerJoin('non_profits', 'users.id', 'non_profits.user_id')
+  .select('*')
+  .where({user_name})
+  .then( profile => {
+  res.render('nonprofit/edit', {title : 'Edit profile', profile});
+  })
 });
 
 router.get('/profile/:username', function(req, res, next) {
+  let user_name = req.params.username
+  knex.from('users').innerJoin('non_profits', 'users.id', 'non_profits.user_id')
+  .select('*')
+  .where({user_name})
+  .then( profile => {
+    res.render('nonprofit/profile', {title : 'Profile', profile});
+  })
+});
 
-  res.render('nonprofit/profile', {title : 'Profile', action : 'view'});
-});
-router.get('/edit/:username', function(req, res, next) {
-  res.render('nonprofit/edit', {title : 'Edit profile', action : 'edit'});
-});
+
+
+
+
+
 router.get('/search', function(req, res, next) {
   res.render('nonprofit/search' );
 });
@@ -51,3 +64,8 @@ router.put('/booking/:id', function(req, res, next) {
 });
 
 module.exports = router;
+// latlong('55436')
+// .then(result => {
+//   console.log('inside route', result.results[0].geometry.location);
+//   res.render('nonprofit/login', {title : 'Register', result : result});
+// })
