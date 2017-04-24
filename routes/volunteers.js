@@ -4,10 +4,15 @@ const knex = require('../db');
 const router = express.Router();
 
 /* GET home page. */
-router.get('/register/', function(req, res, next) {
-  res.redirect(`volunteers/edit/`);
+router.get('/register', function(req, res, next) {
+  console.log("register page");
+  res.redirect(`edit/`);
 });
 
+router.get('/edit', (req, res, next) => {
+  var editRenderObject = {new:true};
+  res.render(`volunteer/edit`, {editRenderObject})
+})
 
 router.get('/edit/:username', function(req, res, next) {
   let reqUserName = req.params.username;
@@ -22,9 +27,11 @@ router.get('/edit/:username', function(req, res, next) {
     let skills = [];
     editUserResult.forEach(element => {skills.push(element.type)});
     editUserResult[0].skills = skills;
-    console.log(editUserResult[0]);
+    editUserResult[0].new = false;
+    var editRenderObject = editUserResult[0];
+    console.log(editRenderObject);
+    res.render(`volunteer/edit`, {editRenderObject});
   })
-  res.render(`volunteer/edit/${reqUserName}`);
 });
 
 router.get('/dashboard/:username', function(req, res, next) {
@@ -48,12 +55,15 @@ router.get('/dashboard/:username', function(req, res, next) {
 router.get('/profile/:username', function(req, res, next) {
   res.render(`volunteer/profile/${username}`);
 });
+
 router.post('/profile/:username', function(req, res, next) {
   res.redirect(`volunteer/profile/${username}`);
 });
+
 router.put('/profile/:username', function(req, res, next) {
   res.redirect(`volunteer/profile/${username}`);
 });
+
 router.put('/booking/:id', function(req, res, next) {
   res.redirect(`volunteers/dashboard/${username}`);
 });
