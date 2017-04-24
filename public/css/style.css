@@ -62,8 +62,13 @@ nav ul{
   width: 200px;
 }
 .login-label{
+  display: block;
   color: grey;
   border-color: light grey;
   border-style: solid;
   border-width: thin;
+  margin: 20px;
+}
+.login-link{
+  margin: 20px;
 }

@@ -6,15 +6,18 @@ const latlong = require('./miscellaneous')
 
 /* GET home page. */
 router.get('/register', function(req, res, next) {
-  console.log(latlong('55436'));
-  res.render('nonprofit/login', {title : 'Register'});
+  res.render('nonprofit/edit', {title : 'Register'});
+  // latlong('55436')
+  // .then(result => {
+  //   console.log(result);
+  //   res.render('nonprofit/login', {title : 'Register', result : result});
+  // })
 });
+
 router.get('/login', function(req, res, next) {
   res.render('nonprofit/login', {title : 'Login'});
 });
-router.get('/register/:username', function(req, res, next) {
-  res.render('nonprofit/edit', {title : 'Create profile', action : 'create'});
-});
+
 router.get('/profile/:username', function(req, res, next) {
 
   res.render('nonprofit/profile', {title : 'Profile', action : 'view'});

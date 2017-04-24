@@ -7,8 +7,9 @@ function getLatitudeLongitude(address) {
     dataType: 'json',
   };
   return rp(opts)
-   .then(results => {
-     return results;
+   .then(result => {
+     console.log(result.status);
+     return result;
    })
    .catch(function(err) {
     console.error(err);
