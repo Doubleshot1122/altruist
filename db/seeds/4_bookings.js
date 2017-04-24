@@ -8,20 +8,20 @@ exports.seed = function(knex, Promise) {
         id: 1,
         volunteer_id: 1,
         non_profit_id: 1,
-        startDateTime: '2017-04-28 19:00:00 UTC', endDateTime: '2017-04-28 21:00:00 UTC',
+        start_date_time: '2017-04-28 19:00:00 UTC', end_date_time: '2017-04-28 21:00:00 UTC',
         status: 'booked',
-        specialDirections: 'Room 10',
-        volunteerJobAssessment: ''
+        special_directions: 'Room 10',
+        volunteer_job_assessment: ''
       },
       {
         id: 2,
         volunteer_id: 2,
         non_profit_id: 2,
-        startDateTime: '2017-05-05 14:00:00 UTC',
-        endDateTime: '2017-05-05 16:00:00 UTC',
+        start_date_time: '2017-05-05 14:00:00 UTC',
+        end_date_time: '2017-05-05 16:00:00 UTC',
         status: 'booked',
-        specialDirections: 'Baker room, check-in at front desk 10 minutes prior',
-        volunteerJobAssessment: ''
+        special_directions: 'Baker room, check-in at front desk 10 minutes prior',
+        volunteer_job_assessment: ''
       }
       ]);
     }).then(() => {

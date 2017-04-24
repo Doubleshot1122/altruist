@@ -5,14 +5,14 @@ exports.seed = function(knex) {
     .then(() => {
       return knex('users').insert([{
         id: 1,
-        userName: 'Donny',
+        user_name: 'Donny',
         password: '15151515',
         role: 1,
         created_at: new Date('2016-06-26 14:26:16 UTC'),
         updated_at: new Date('2016-06-26 14:26:16 UTC')
       }, {
         id: 2,
-        userName: 'Betty',
+        user_name: 'Betty',
         password: '202020202',
         role: 2,
         created_at: new Date('2016-06-26 14:26:16 UTC'),
@@ -24,4 +24,4 @@ exports.seed = function(knex) {
         "SELECT setval('users_id_seq', (SELECT MAX(id) FROM users));"
       );
     });
-}; 
+};
