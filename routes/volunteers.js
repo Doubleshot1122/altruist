@@ -50,9 +50,9 @@ router.get('/edit/:username', function(req, res, next) {
     editUserResult.forEach(element => {skills.push(element.type)});
     editUserResult[0].skills = skills;
     editUserResult[0].new = false;
-    var editRenderObject = editUserResult[0];
-    console.log(editRenderObject.skills);
-    res.render(`volunteer/edit`, {editRenderObject});
+    var profile = editUserResult[0];
+    console.log(profile);
+    res.render(`volunteer/edit`, {title: `${reqUserName}'s Profile`, profile});
   })
 });
 
@@ -82,9 +82,16 @@ router.get('/dashboard/:username', function(req, res, next) {
   res.render('index', {title : 'dashboard'});
 });
 
+router.get('/bio/:username', function(req, res, next) {
+  let username = req.params.username;
+  let profile = {}
+  res.render(`volunteer/bio`, {title: `${username}'s Bio`, profile});
+});
 
 router.get('/profile/:username', function(req, res, next) {
-  res.render(`volunteer/profile/${username}`);
+  let username = req.params.username;
+  let profile = {}
+  res.render(`volunteer/profile`, {title: `${username}'s Profile`, profile});
 });
 
 router.post('/profile/:username', function(req, res, next) {
