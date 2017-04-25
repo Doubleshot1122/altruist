@@ -4,11 +4,21 @@ const knex = require('../db');
 const router = express.Router();
 
 /* GET home page. */
+// router.get('/register', function(req, res, next) {
+//   knex('skills').select('type as skills')
+//   .then(edit => {
+//     console.log(typeof edit);
+//     res.render('volunteer/edit', {title: 'Register Profile', profile: edit});
+//   })
+// });
+
 router.get('/register', function(req, res, next) {
-  knex('skills').select('type as skills')
-  .then(edit => {
-    console.log(typeof edit);
-    res.render('volunteer/edit', {title: 'Register Profile', profile: edit});
+  let skills = knex('skills').select('type');
+  let profile = {username: "donny", id: 4}
+  Promise.all([skills, profile])
+  .then(results => {
+    console.log(results[0][0].type);
+    res.render('volunteer/edit', {title: 'Register Profile', profile: results});
   })
 });
 
