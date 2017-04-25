@@ -19,7 +19,7 @@ exports.seed = function(knex) {
         lat: 47.6015566,
         long: -122.3323351,
         comments: 'Here are some comments',
-        user_id: 2
+        user_id: 3
       },{
         id: 2,
         name: 'Mercy Hospital',
@@ -36,7 +36,7 @@ exports.seed = function(knex) {
         lat: 47.6015566,
         long: -122.3323351,
         comments: 'Floor 1 - Denali room',
-        user_id: 2
+        user_id: 4
       }
     ]);
     })

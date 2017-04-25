@@ -17,6 +17,20 @@ exports.seed = function(knex) {
         role: 2,
         created_at: new Date('2016-06-26 14:26:16 UTC'),
         updated_at: new Date('2016-06-26 14:26:16 UTC')
+      }, {
+          id: 3,
+          user_name: 'newh',
+          password: '111111111',
+          role: 2,
+          created_at: new Date('2016-06-26 14:26:16 UTC'),
+          updated_at: new Date('2016-06-26 14:26:16 UTC')
+      }, {
+          id: 4,
+          user_name: 'Mercy',
+          password: '2222222',
+          role: 2,
+          created_at: new Date('2016-06-26 14:26:16 UTC'),
+          updated_at: new Date('2016-06-26 14:26:16 UTC')
       }]);
     })
     .then(() => {
