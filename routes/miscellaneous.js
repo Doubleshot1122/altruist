@@ -15,4 +15,5 @@ function getLatitudeLongitude(address) {
     console.error(err);
    })
 }
+
 module.exports = getLatitudeLongitude;

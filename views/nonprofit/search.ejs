@@ -1,1 +1,28 @@
-<p><%= title%></p>
+<% layout('../index') %>
+<div class="well">
+  <form class="form-group" action="/search">
+    <h3>Search for Volunteers</h3>
+      <div class="form-group form-input">
+      <label for="start_date_time">Date</label>
+      <input class="form-control" type="date" id="start_date_time" name="start_date_time">
+    </div>
+    <div class="form-group form-input">
+      <label for="start_time"> Start time</label>
+      <input class="form-control" type="time" step="3600" id="start_time" name="end_time">
+    </div>
+    <div class="form-group form-input">
+      <label for="end_time"> End time</label>
+      <input class="form-control" type="time" step="3600" id="end_time" name="end_time">
+    </div>
+    <legend for="skills">Skills/services</legend>
+
+    <div class="checkbox form-group"  name="skills">
+      <% for(var i = 0; i < skills.length; i++) {%>
+      <label>
+        <input type="checkbox" id="skills" value="<%= skills[i]%>"><%= skills[i].type%>
+      </label>
+      <% } %>
+    </div>
+    <button type="submit" class="btn btn-default">Search</button>
+  </form>
+<div>

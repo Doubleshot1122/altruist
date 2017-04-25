@@ -32,19 +32,52 @@ router.get('/profile/:username', function(req, res, next) {
   .where({user_name})
   .first()
   .then( profile => {
-    console.log(profile);
-    profile.query = `https://www.google.com/maps/embed/v1/place?key=AIzaSyB4XveFwGrMviTxuVmluc1zOh5USwpQMxc&q=${profile.city}`
+    let address="111%20S%20Jackson%20St,%20Seattle,%20WA%2098104"
+    // let address = profile.line_1.split(' ').join('%20')
+    //  +'%20'+profile.line_2+'%20'+profile.city+'%20'+profile.zip
+    profile.query =`https://www.google.com/maps/embed/v1/place?key=AIzaSyB4XveFwGrMviTxuVmluc1zOh5USwpQMxc&q=${address}&zoom=18&maptype=roadmap`
     res.render('nonprofit/profile', {title : 'Profile', profile});
   })
 });
 
-
 router.get('/search', function(req, res, next) {
-  res.render('nonprofit/search' );
+  //let user_id =req.session.userId
+  let user_id= 3;
+console.log(req.query);
+  let where = {};
+  if (req.query.start_date_time){
+    where.start_date_time = req.query.start_date_time;
+  }
+  if (req.query.start_time) {
+    where.start_time = req.query.start_time;
+  }
+  if (req.query.end_time) {
+    where.end_time = req.query.end_time;
+  }
+  let query = knex('bookings')
+  .where(where);
+
+  // if (req.query.ingredientsGreaterThan) {
+  //   query = query.andWhere('no_of_ingredients', '>',req.query.ingredientsGreaterThan);
+  // }
+  // if (req.query.ingredientsLessThan) {
+  //   query = query.andWhere('no_of_ingredients', '<',req.query.ingredientsLessThan);
+  // }
+  // if (req.query.ingredientsEqualTo) {
+  //   query = query.andWhere('no_of_ingredients', '=',req.query.ingredientsEqualTo);
+  // }
+  // query.then(results => {
+  //
+  // })
+  // .then(results => {
+  knex('skills')
+  .select('type')
+  .then(skills => {
+    res.render('nonprofit/search', {skills})
+  })
+
 });
-router.get('/search/:username', function(req, res, next) {
-  res.render('nonprofit/search', {results});
-});
+
 router.get('/dashboard', function(req, res, next) {
   res.render('nonprofit/dashboard');
 });
