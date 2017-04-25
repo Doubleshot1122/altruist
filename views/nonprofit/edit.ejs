@@ -1,8 +1,8 @@
 <% layout('../index') %>
-<% var profile = profile || {} %>
+<% var edit = profile.user_name ? `${profile.user_name}?_method=PUT`: '' %>
 <div class="container col-mid-2">
   <h1><%= title%></h1>
-  <form class="well" method="POST" action="../nonprofits/register/<% if (profile.user_name !== undefined) {%>profile.user_name?_method=PUT<%} %>">
+  <form class="well" method="POST" action="/nonprofits/edit/<%= edit %>">
     <div class="form-group form-input">
       <label for="user_name">Username</label>
       <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Username" value="<%= profile.user_name || '' %>">

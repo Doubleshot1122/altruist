@@ -6,7 +6,7 @@ const latlong = require('./miscellaneous')
 
 /* GET home page. */
 router.get('/register', function(req, res, next) {
-    res.render('nonprofit/edit', {title : 'Register Profile'});
+    res.render('nonprofit/edit', {title : 'Register Profile', profile: {} });
 });
 
 router.get('/login', function(req, res, next) {
