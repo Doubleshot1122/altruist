@@ -37,6 +37,7 @@ body{
   border-radius: 5px;
   padding: 30px;
   border-color: black;
+  width: 100%
 }
 .grey{
   background-color: lightgrey;
@@ -48,7 +49,7 @@ nav ul{
   padding: 10px;
 }
 .a-padding {
-  padding-top: 10px;
+  padding: 50px;
 }
 .login{
   display: inline-block;
@@ -62,6 +63,7 @@ nav ul{
   width: 200px;
 }
 .login-label{
+  background-color: lightblue;
   display: block;
   color: grey;
   border-color: light grey;
@@ -73,5 +75,8 @@ nav ul{
   margin: 20px;
 }
 .form-input{
+  display: inline-block;
+}
+.div-display{
   display: inline-block;
 }

@@ -4,6 +4,14 @@ const knex = require('../db');
 const router = express.Router();
 
 /* GET home page. */
+router.get('/register', function(req, res, next) {
+    res.render('volunteer/edit', {title : 'Register Profile'});
+});
+
+router.get('/login', function(req, res, next) {
+  res.render('login', {title : 'Login'});
+});
+
 router.get('/register/:username', function(req, res, next) {
   res.redirect(`volunteers/edit/${username}`, {action : 'create'});
   //------is this different from the edit profile?-----
