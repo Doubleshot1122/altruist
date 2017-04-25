@@ -72,3 +72,6 @@ nav ul{
 .login-link{
   margin: 20px;
 }
+.form-input{
+  display: inline-block;
+}
