@@ -14,12 +14,14 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/edit/:username', function(req, res, next) {
-  let user_name = req.params.username
+  let user_name = req.params.username;
   knex.from('users').innerJoin('non_profits', 'users.id', 'non_profits.user_id')
   .select('*')
   .where({user_name})
-  .then( profile => {
-  res.render('nonprofit/edit', {title : 'Edit profile', profile});
+  .first()
+  .then(profile => {
+    console.log(profile);
+    res.render('nonprofit/edit', {title : 'Edit profile', profile});
   })
 });
 
@@ -28,14 +30,12 @@ router.get('/profile/:username', function(req, res, next) {
   knex.from('users').innerJoin('non_profits', 'users.id', 'non_profits.user_id')
   .select('*')
   .where({user_name})
+  .first()
   .then( profile => {
+    console.log(profile);
     res.render('nonprofit/profile', {title : 'Profile', profile});
   })
 });
-
-
-
-
 
 
 router.get('/search', function(req, res, next) {
