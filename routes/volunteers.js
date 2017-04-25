@@ -10,6 +10,16 @@ router.get('/register', function(req, res, next) {
     console.log(editRenderObject);
     res.render('volunteer/edit', {editRenderObject});
   })
+    res.render('volunteer/edit', {title : 'Register Profile'});
+});
+
+router.get('/login', function(req, res, next) {
+  res.render('login', {title : 'Login'});
+});
+
+router.get('/register/:username', function(req, res, next) {
+  res.redirect(`volunteers/edit/${username}`, {action : 'create'});
+  //------is this different from the edit profile?-----
 });
 
 router.get('/edit', (req, res, next) => {
