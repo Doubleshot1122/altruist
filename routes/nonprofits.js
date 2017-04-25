@@ -33,6 +33,7 @@ router.get('/profile/:username', function(req, res, next) {
   .first()
   .then( profile => {
     console.log(profile);
+    profile.query = `https://www.google.com/maps/embed/v1/place?key=AIzaSyB4XveFwGrMviTxuVmluc1zOh5USwpQMxc&q=${profile.city}`
     res.render('nonprofit/profile', {title : 'Profile', profile});
   })
 });
