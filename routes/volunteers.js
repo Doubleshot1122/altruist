@@ -6,11 +6,10 @@ const router = express.Router();
 /* GET home page. */
 router.get('/register', function(req, res, next) {
   knex('skills').select('type as skills')
-  .then(editRenderObject => {
-    console.log(editRenderObject);
-    res.render('volunteer/edit', {editRenderObject});
+  .then(edit => {
+    console.log(typeof edit);
+    res.render('volunteer/edit', {title: 'Register Profile', profile: edit});
   })
-    res.render('volunteer/edit', {title : 'Register Profile'});
 });
 
 router.get('/login', function(req, res, next) {
