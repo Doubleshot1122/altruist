@@ -1,0 +1,82 @@
+<% layout('../index') %>
+  <form method="POST" action="../volunteers" class="form-horizontal well">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" class="form-control" id="password" name="password" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label for="cpassword">Confirm Password</label>
+        <input type="text" class="form-control" id="cpassword" name="cpassword" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label for="first_name" class="col-sm-2 control-label">First Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="last_name" class="col-sm-2 control-label">Last Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pref_name" class="col-sm-2 control-label">Preferred Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="pref_name" name="pref_name" placeholder="Preferred Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="age" class="col-sm-2 control-label">Age</label>
+        <div class="col-sm-10">
+            <input type="integer" class="form-control" id="age" name="age" placeholder="Age">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="zip" class="col-sm-2 control-label">Zipcode</label>
+        <div class="col-sm-10">
+            <input type="integer" class="form-control" id="zip" name="zip" placeholder="your zipcode">
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="travel_radius" class="col-sm-2 control-label">Distance willing to travel</label>
+      <select class="form-control" id="travel_radius" name="travel_radius">
+        <option value="5">5 miles</option>
+        <option value="5">10 miles</option>
+        <option value="5">15 miles</option>
+        <option value="5">20 miles</option>
+        <option value="5">25 miles</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="advance_notice" class="col-sm-2 control-label">Distance willing to travel</label>
+      <select class="form-control" id="advance_notice" name="advance_notice">
+        <option value="24">1 day</option>
+        <option value="48">2 days</option>
+        <option value="72">3 days</option>
+        <option value="168">1 week</option>
+        <option value="336">2 weeks</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="skills" class="col-sm-2 control-label">Skills/services I can offer</label>
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox" id="skills" name="skills">
+          <% for(var i = 0; i < editRenderObject.skills.length; i++) {%>
+          <label>
+            <input type="checkbox" value="<%= editRenderObject.skills[i]%>"><%= editRenderObject.skills[i]%>
+          </label>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Save profile</button>
+        </div>
+    </div>
+  </form>
