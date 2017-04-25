@@ -5,8 +5,11 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/register', function(req, res, next) {
-  console.log("register page");
-  res.redirect(`edit/`);
+  knex('skills').select('type as skills')
+  .then(editRenderObject => {
+    console.log(editRenderObject);
+    res.render('volunteer/edit', {editRenderObject});
+  })
 });
 
 router.get('/edit', (req, res, next) => {
@@ -17,7 +20,7 @@ router.get('/edit', (req, res, next) => {
 router.get('/edit/:username', function(req, res, next) {
   let reqUserName = req.params.username;
   let query = knex('volunteers')
-  .select('volunteers.pref_name', 'volunteers.first_name', 'volunteers.last_name', 'volunteers.age', 'volunteers.zip', 'volunteers.travel_radius', 'volunteers.advance_notice', 'skills.type')
+  .select('volunteers.*', 'skills.type', 'users.user_name')
   .innerJoin('users', 'users.id', 'volunteers.user_id')
   .innerJoin('volunteers_skills', 'volunteers_skills.volunteer_id', 'volunteers.id')
   .innerJoin('skills', 'skills.id', 'volunteers_skills.skill_id')
@@ -29,20 +32,29 @@ router.get('/edit/:username', function(req, res, next) {
     editUserResult[0].skills = skills;
     editUserResult[0].new = false;
     var editRenderObject = editUserResult[0];
-    console.log(editRenderObject);
+    console.log(editRenderObject.skills);
     res.render(`volunteer/edit`, {editRenderObject});
   })
 });
 
 router.get('/dashboard/:username', function(req, res, next) {
+
+  //update from booked to complete in bookings table
   let reqUserName = req.params.username;
   let query = knex('bookings')
-  .select('bookings.*', 'booking_status.status')
-  .innerJoin('booking_status', 'bookings.status', 'booking_status.id')
+  .select('bookings.*', 'non_profits.*', 'users.user_name', 'skills.type')
+  .innerJoin('non_profits', 'bookings.non_profit_id', 'non_profits.id')
+  .innerJoin('volunteers', 'volunteers.id', 'bookings.volunteer_id')
+  .innerJoin('users', 'volunteers.user_id', 'users.id')
+  .innerJoin('skills', 'bookings.skill', 'skills.id')
+  .where('users.user_name', reqUserName)
+
 
 
   query.then(results => {
-
+    //calculate duration of bookings
+    //calculate total time spent on each completed booking
+    //5
     console.log('results', results);
   })
 
