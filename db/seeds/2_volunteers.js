@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
                     lat: 47.6015566,
                     long: -122.3323351,
                     travel_radius: 5,
-                    advance_notice: 7,
+                    advance_notice: 2,
                     user_id: 1
                 },
                 {
@@ -40,7 +40,7 @@ exports.seed = function(knex, Promise) {
                     long : -122.1112721,
                     travel_radius: 5,
                     advance_notice: 7,
-                    user_id: 3
+                    user_id: 5
                 },
                 {
                     id: 4,
@@ -53,7 +53,7 @@ exports.seed = function(knex, Promise) {
                     long : -122.4417426,
                     travel_radius: 5,
                     advance_notice: 7,
-                    user_id: 4
+                    user_id: 6
                 }
             ]);
         }).then(() => {

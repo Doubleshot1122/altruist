@@ -15,5 +15,28 @@ function getLatitudeLongitude(address) {
     console.error(err);
    })
 }
+function getDistances(locations) {
+  let str = '';
+  str = locations.destinations.map(el =>{
+    return el.lat + ',' +  el.long;
+  })
+  str = str.join('|');
+  console.log(str);
+  var opts = {
+    method: 'GET',
+    url: `https://maps.googleapis.com/maps/api/distancematrix/json\?units\=imperial\&origins\=${locations.origin.lat},${locations.origin.long}\&destinations\=${str}\&key\=AIzaSyB7gemB_oHc6eDwe2Xo4elMp7TCzw9OMQ4`,
+    json: true,
+  };
+  // console.log(locations.destinations);
+  // console.log(opts.url);
+  return rp(opts)
+   .then(result => {
+     console.log(result);
+     return result;
+   })
+   .catch(function(err) {
+    console.error(err);
+   })
+}
 
-module.exports = getLatitudeLongitude;
+module.exports = {getLatitudeLongitude, getDistances};

@@ -28,9 +28,9 @@ exports.seed = function(knex, Promise) {
         id: 3,
         volunteer_id: 2,
         non_profit_id: 0,
-        start_date_time: '2017-05-05 14:00:00',
-        end_date_time: '2017-05-05 15:00:00',
-        status: 'booked',
+        start_date_time: '2017-04-28 19:00:00',
+        end_date_time: '2017-04-28 20:00:00',
+        status: 'available',
         special_directions: '',
         volunteer_job_assessment: '',
         skill: 0
