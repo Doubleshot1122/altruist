@@ -74,12 +74,13 @@ router.get('/search', function(req, res, next) {
       .first()
       .then(location_info => {
         results.origin = location_info;
-        return knex.select('lat','long', 'travel_radius','advance_notice').from('bookings').innerJoin('volunteers','bookings.volunteer_id', 'volunteers.user_id')
-        .where('bookings.status','<>','booked')
-        .andWhere(knex.raw(`DATE(start_date_time) = ${req.query.start_date_time}`))
-        .andWhere(knex.raw(`EXTRACT('hour' FROM start_date_time)>=${req.query.start_time}`))
-        .andWhere(knex.raw(`EXTRACT('hour' FROM end_date_time)<=${req.query.end_time}`))
-        .andWhere(knex.raw(`EXTRACT('day' FROM ${req.query.end_time}) - EXTRACT('day' FROM CURRENT_DATE) <= advance_notice`))
+        // return knex.select('lat','long', 'travel_radius','advance_notice').from('bookings').innerJoin('volunteers','bookings.volunteer_id', 'volunteers.user_id')
+        // .where('bookings.status','<>','booked')
+        // .andWhere(knex.raw(` DATE(start_date_time) = ${req.query.start_date_time}`))
+        // .andWhere(knex.raw(` EXTRACT('hour' FROM start_date_time)>=${req.query.start_time}`))
+        // .andWhere(knex.raw(` EXTRACT('hour' FROM end_date_time)<=${req.query.end_time}`))
+        // .andWhere(knex.raw(` EXTRACT('day' FROM ${req.query.end_time}) - EXTRACT('day' FROM CURRENT_DATE) <= advance_notice`))
+        return knex.raw(`SELECT lat,long,travel_radius,advance_notice FROM bookings INNER JOIN volunteers ON bookings.volunteer_id = volunteers.user_id WHERE bookings.status <> 'booked' AND DATE(start_date_time) = ${req.query.start_date_time} AND EXTRACT('hour' FROM start_date_time) >= ${req.query.start_time} AND EXTRACT('hour' FROM end_date_time)<=${req.query.end_time} AND (EXTRACT('day' FROM ${req.query.end_time}) - EXTRACT('day' FROM CURRENT_DATE)) <= advance_notice`)
       })
       .then(info =>{
         //console.log(info);
