@@ -1,25 +1,25 @@
 <% layout('../index') %>
+<%= JSON.stringify(results) %>
 <div class="well">
   <form class="form-group" action="/nonprofits/search">
     <h3>Search for Volunteers</h3>
       <div class="form-group form-input">
       <label for="start_date_time">Date</label>
-      <input class="form-control" type="date" id="start_date_time" name="start_date_time">
+      <input class="form-control" type="date" id="start_date_time" name="start_date_time" required>
     </div>
     <div class="form-group form-input">
       <label for="start_time"> Start time</label>
-      <input class="form-control" type="time" step="3600" id="start_time" name="start_time">
+      <input class="form-control" type="time" step="3600" id="start_time" name="start_time" required>
     </div>
     <div class="form-group form-input">
       <label for="end_time"> End time</label>
-      <input class="form-control" type="time" step="3600" id="end_time" name="end_time">
+      <input class="form-control" type="time" step="3600" id="end_time" name="end_time" required>
     </div>
     <legend for="skills">Skills/services</legend>
-
     <div class="checkbox form-group"  name="skills">
-      <% for(var i = 0; i < skills.length; i++) {%>
+      <% for(var i = 0; i < results.skills.length; i++) {%>
       <label>
-        <input type="checkbox" id="skills" value="<%= skills[i]%>"><%= skills[i].type%>
+        <input type="checkbox" id="skills" value="<%= results.skills[i]%>"><%= results.skills[i].type%>
       </label>
       <% } %>
     </div>

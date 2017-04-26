@@ -1,23 +1,31 @@
 <% layout('../index') %>
-
-<div class="well">
-  <p class="col-md-offset-2"><%= title%></p>
-  <div class="col-md-offset-2">
-    <p><%= profile.name %></p>
-    <p><%= profile.line_1 %> <%= profile.line_2 %> <%= profile.city %> <%= profile.state %> <%= profile.zip %></p>
- </div>
-  <br><br>
-  <div><%= profile.description %></div>
-  <div>Contact:</div>
-  <div>
-    <p><%= profile.contact_name%></p>
-    <p><%= profile.contact_phone%></p>
-    <p><%= profile.contact_email%></p>
+<h2 class="div-display"><%= title%></h2>
+<div class="well row">
+  <div class="col-md-offset-7 div-display">
+    <a class="div-display login-link" href="/nonprofits/dashboard">Dashboard</a>
+    <a class="div-display login-link" href="/nonprofits/edit/Mercy">Edit Profile</a>
+    <a class="div-display login-link" href="/nonprofits/search">Search</a>
   </div>
   <div>
-    <iframe width="450" height="200" frameborder="0" style="border:0" allowfullscreen
-src="<%= profile.query%>"></iframe>
-<!-- <img width="200" height="250" frameborder="0" style="border:0"
-src="<%= profile.query%>"> -->
+    <div class="col-md-offset-4">
+      <h3><%= profile.name %></h3>
+      <p><%= profile.line_1 %> <%= profile.line_2 %> <%= profile.city %> <%= profile.state %> <%= profile.zip %></p>
+  </div>
+  <br><br>
+  <div class="col-md-5 div-display">
+    <div class="col-sm-offset-2"><%= profile.description %></div>
+    <div class="col-sm-offset-2"><strong>Contact:</strong></div>
+      <div class="col-sm-offset-2">
+        <p><%= profile.contact_name%></p>
+        <p><%= profile.contact_phone%></p>
+        <p><%= profile.contact_email%></p>
+      </div>
+    </div>
+    <div class="col-md-4 div-display">
+      <iframe width="450" height="200" frameborder="0" style="border:0" allowfullscreen
+  src="<%= profile.query%>"></iframe>
+  <!-- <img width="200" height="250" frameborder="0" style="border:0"
+  src="<%= profile.query%>"> -->
+    </div>
   </div>
 </div>
