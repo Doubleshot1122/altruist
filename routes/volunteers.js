@@ -14,10 +14,10 @@ const router = express.Router();
 
 router.get('/register', function(req, res, next) {
   let skills = knex('skills').select('type');
-  let profile = {username: "donny", id: 4}
+  let profile = {username: "donny", id: 4};
   Promise.all([skills, profile])
   .then(results => {
-    console.log(results[0][0].type);
+    console.log(results);
     res.render('volunteer/edit', {title: 'Register Profile', profile: results});
   })
 });
@@ -38,23 +38,41 @@ router.get('/edit', (req, res, next) => {
 
 router.get('/edit/:username', function(req, res, next) {
   let reqUserName = req.params.username;
-  let query = knex('volunteers')
+  let skill = knex('skills').select('type');
+  let profile = knex('volunteers')
   .select('volunteers.*', 'skills.type', 'users.user_name')
   .innerJoin('users', 'users.id', 'volunteers.user_id')
   .innerJoin('volunteers_skills', 'volunteers_skills.volunteer_id', 'volunteers.id')
   .innerJoin('skills', 'skills.id', 'volunteers_skills.skill_id')
-  .where('users.user_name', reqUserName)
+  .where('users.user_name', reqUserName);
+  Promise.all([skill, profile])
+  .then(results => {
+    console.log(results);
 
-  query.then(editUserResult => {
-    let skills = [];
     editUserResult.forEach(element => {skills.push(element.type)});
-    editUserResult[0].skills = skills;
+
+    editUserResult[1].skills = skills;
     editUserResult[0].new = false;
     var profile = editUserResult[0];
-    console.log(profile);
+    console.log('================');
+    console.log('skills', skill);
+    console.log('================');
+    // console.log('profile', profile);
+    console.log('================');
     res.render(`volunteer/edit`, {title: `${reqUserName}'s Profile`, profile});
   })
 });
+
+router.get('/edit/:username', (req, res, next) => {
+  let username = req.params.username;
+  let skills = knex('skills').select('type');
+  let profile = knex('volunteers')
+  .select('volunteers.*')
+  Promise.all([skills, profile, username])
+  .then(results => {
+    console.log(results);
+  })
+})
 
 router.get('/dashboard/:username', function(req, res, next) {
 
