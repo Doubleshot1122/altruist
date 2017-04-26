@@ -55,21 +55,12 @@ console.log(req.query);
     where.end_time = req.query.end_time;
   }
   let query = knex('bookings')
-  .where(where);
+  .select(knex.raw("extract('hour' from start_date_time) as start_hour, extract('hour' from end_date_time) as end_hour"))
+  .where('start_date_time', req.query.start_date_time)
+  .where('start_hour','>=', req.query.start_time)
+  .where('end_hour', '<=', req.query.end_time);
+  console.log(query)
 
-  // if (req.query.ingredientsGreaterThan) {
-  //   query = query.andWhere('no_of_ingredients', '>',req.query.ingredientsGreaterThan);
-  // }
-  // if (req.query.ingredientsLessThan) {
-  //   query = query.andWhere('no_of_ingredients', '<',req.query.ingredientsLessThan);
-  // }
-  // if (req.query.ingredientsEqualTo) {
-  //   query = query.andWhere('no_of_ingredients', '=',req.query.ingredientsEqualTo);
-  // }
-  // query.then(results => {
-  //
-  // })
-  // .then(results => {
   knex('skills')
   .select('type')
   .then(skills => {
