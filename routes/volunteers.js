@@ -72,7 +72,7 @@ router.get('/edit/:username', (req, res, next) => {
 
   Promise.all([allSkills, volunteerSkills, profile, username])
   .then(results => {
-    
+
   })
   .then(results => {
     var profile = [[{type: "run"}, {type: "jump"}], {username: username}]
@@ -81,7 +81,7 @@ router.get('/edit/:username', (req, res, next) => {
   })
 })
 
-router.get('/dashboard/:username', function(req, res, next) {
+router.get('/dashboard/:username', (req, res, next) => {
 
   //update from booked to complete in bookings table
   let reqUserName = req.params.username;
@@ -95,17 +95,14 @@ router.get('/dashboard/:username', function(req, res, next) {
 
 
 
-  query.then(results => {
+
     //calculate duration of bookings
     //calculate total time spent on each completed booking
     //5
-    console.log('results', results);
-  })
-
-
-  // res.render(`volunteers/dashboard/${username}`, {result});
-  res.render('index', {title : 'dashboard'});
+    // console.log('results', results);
+    res.render('volunteer/dashboard', {title: `${reqUserName}'s Dashboard`})
 });
+
 
 router.get('/bio/:username', function(req, res, next) {
   let username = req.params.username;
