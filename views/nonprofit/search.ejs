@@ -1,8 +1,8 @@
 <% layout('../index') %>
-<%= JSON.stringify(results) %>
+<!-- <%= JSON.stringify(results) %> -->
+<h3>Search for Volunteers</h3>
 <div class="well">
   <form class="form-group" action="/nonprofits/search">
-    <h3>Search for Volunteers</h3>
       <div class="form-group form-input">
       <label for="start_date_time">Date</label>
       <input class="form-control" type="date" id="start_date_time" name="start_date_time" required>
@@ -25,4 +25,29 @@
     </div>
     <button type="submit" class="btn btn-default">Search</button>
   </form>
-<div>
+</div>
+<h3>Search results</h3>
+<div class="well">
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+      <tr class="info">
+        <th>Name</th>
+        <th>Skill</th>
+        <th>Time Slot</th>
+        <th>Comments</th>
+        <th>Book</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a>Donny Barclay</a></td>
+        <td>Teaching</td>
+        <td>7pm - 8pm</td>
+        <td>I can teach basic computer skills</td>
+        <td><button>Book me</button></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
