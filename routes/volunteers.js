@@ -36,41 +36,48 @@ router.get('/edit', (req, res, next) => {
   res.render(`volunteer/edit`, {editRenderObject})
 })
 
-router.get('/edit/:username', function(req, res, next) {
-  let reqUserName = req.params.username;
-  let skill = knex('skills').select('type');
-  let profile = knex('volunteers')
-  .select('volunteers.*', 'skills.type', 'users.user_name')
-  .innerJoin('users', 'users.id', 'volunteers.user_id')
-  .innerJoin('volunteers_skills', 'volunteers_skills.volunteer_id', 'volunteers.id')
-  .innerJoin('skills', 'skills.id', 'volunteers_skills.skill_id')
-  .where('users.user_name', reqUserName);
-  Promise.all([skill, profile])
-  .then(results => {
-    console.log(results);
-
-    editUserResult.forEach(element => {skills.push(element.type)});
-
-    editUserResult[1].skills = skills;
-    editUserResult[0].new = false;
-    var profile = editUserResult[0];
-    console.log('================');
-    console.log('skills', skill);
-    console.log('================');
-    // console.log('profile', profile);
-    console.log('================');
-    res.render(`volunteer/edit`, {title: `${reqUserName}'s Profile`, profile});
-  })
-});
+// router.get('/edit/:username', function(req, res, next) {
+//   let reqUserName = req.params.username;
+//   let skill = knex('skills').select('type');
+//   let profile = knex('volunteers')
+//   .select('volunteers.*', 'skills.type', 'users.user_name')
+//   .innerJoin('users', 'users.id', 'volunteers.user_id')
+//   .innerJoin('volunteers_skills', 'volunteers_skills.volunteer_id', 'volunteers.id')
+//   .innerJoin('skills', 'skills.id', 'volunteers_skills.skill_id')
+//   .where('users.user_name', reqUserName);
+//   Promise.all([skill, profile])
+//   .then(results => {
+//     console.log(results);
+//
+//     editUserResult.forEach(element => {skills.push(element.type)});
+//
+//     editUserResult[1].skills = skills;
+//     editUserResult[0].new = false;
+//     var profile = editUserResult[0];
+//     console.log('================');
+//     console.log('skills', skill);
+//     console.log('================');
+//     // console.log('profile', profile);
+//     console.log('================');
+//     res.render(`volunteer/edit`, {title: `${reqUserName}'s Profile`, profile});
+//   })
+// });
 
 router.get('/edit/:username', (req, res, next) => {
   let username = req.params.username;
-  let skills = knex('skills').select('type');
+  let allSkills = knex('skills');
+  let volunteerSkills = knex('volunteers_skills')
   let profile = knex('volunteers')
   .select('volunteers.*')
-  Promise.all([skills, profile, username])
+
+  Promise.all([allSkills, volunteerSkills, profile, username])
   .then(results => {
-    console.log(results);
+    
+  })
+  .then(results => {
+    var profile = [[{type: "run"}, {type: "jump"}], {username: username}]
+    console.log(profile);
+    res.render('volunteer/edit', {title: `${username}'s Profile'`, profile})
   })
 })
 
