@@ -33,8 +33,8 @@ exports.seed = function(knex) {
         city: 'seattle',
         state: 'WA',
         zip: 98104,
-        lat: 47.6015566,
-        long: -122.3323351,
+        lat: 47.673988,
+        long: -122.121513,
         comments: 'Floor 1 - Denali room',
         user_id: 4
       }
