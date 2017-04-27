@@ -80,3 +80,7 @@ nav ul{
 .div-display{
   display: inline-block;
 }
+.link-text{
+  font-size: 16px;
+  display:inline;
+}
