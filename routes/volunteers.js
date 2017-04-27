@@ -77,7 +77,7 @@ router.get('/edit/:username', (req, res, next) => {
   .then(results => {
     var profile = [[{type: "run"}, {type: "jump"}], {username: username}]
     console.log(profile);
-    res.render('volunteer/edit', {title: `${username}'s Profile'`, profile})
+    res.render('volunteer/edit', {title: `${username}'s Profile`, profile})
   })
 })
 
@@ -100,13 +100,13 @@ router.get('/dashboard/:username', (req, res, next) => {
     //calculate total time spent on each completed booking
     //5
     // console.log('results', results);
-    res.render('volunteer/dashboard', {title: `${reqUserName}'s Dashboard`})
+    res.render('volunteer/dashboard', {title: `${reqUserName}'s Dashboard`, reqUserName})
 });
 
 
 router.get('/bio/:username', function(req, res, next) {
   let username = req.params.username;
-  let profile = {}
+  let profile = {username}
   res.render(`volunteer/bio`, {title: `${username}'s Bio`, profile});
 });
 
