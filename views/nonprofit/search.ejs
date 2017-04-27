@@ -1,6 +1,14 @@
 <% layout('../index') %>
 <!-- <%= JSON.stringify(results) %> -->
-<h3>Search for Volunteers</h3>
+<div class="row">
+  <div class="col-md-4 div-display">
+    <h3>Search for Volunteers</h3>
+</div>
+<div class= "col-md-offset-4 div-display">
+  <a class="div-display login-link" href="/nonprofits/dashboard/Mercy">Dashboard</a>
+  <a class="div-display login-link" href="/nonprofits/profile/Mercy">Profile</a>
+</div>
+</div>
 <div class="well">
   <form class="form-group" action="/nonprofits/search">
       <div class="form-group form-input">
@@ -16,10 +24,10 @@
       <input class="form-control" type="time" step="3600" id="end_time" name="end_time" required>
     </div>
     <legend for="skills">Skills/services</legend>
-    <div class="checkbox form-group"  name="skills">
+    <div class="checkbox form-group">
       <% for(var i = 0; i < results.skills.length; i++) {%>
       <label>
-        <input type="checkbox" id="skills" value="<%= results.skills[i]%>"><%= results.skills[i].type%>
+        <input type="checkbox" id="skills" value="<%= results.skills[i]%>" name="skills"><%= results.skills[i].type%>
       </label>
       <% } %>
     </div>
@@ -35,6 +43,7 @@
         <th>Name</th>
         <th>Skill</th>
         <th>Time Slot</th>
+        <th>Volunteer Location</th>
         <th>Comments</th>
         <th>Book</th>
       </tr>
@@ -44,6 +53,7 @@
         <td><a>Donny Barclay</a></td>
         <td>Teaching</td>
         <td>7pm - 8pm</td>
+        <td>Redmond</td>
         <td>I can teach basic computer skills</td>
         <td><button>Book me</button></td>
       </tr>

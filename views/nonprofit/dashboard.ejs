@@ -1,1 +1,39 @@
-<p><%= title%></p>
+<% layout('../index') %>
+<div class="row">
+  <div class="col-md-4" div-display>
+    <h3>Dashboard</h3>
+  </div>
+  <div class="col-md-offset-4 div-display">
+    <a class="div-display login-link" href="/nonprofits/profile/Mercy"> Profile</a>
+    <a class="div-display login-link" href="/nonprofits/search">Search</a>
+  </div>
+</div>
+<div class="well">
+  <h2>Events</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+      <tr class="info">
+        <th>Date</th>
+        <th>Time Slot</th>
+        <th>Volunteer Name</th>
+        <th>Volunteer Location</th>
+        <th>Skill</th>
+        <th>Comments</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2017-04-28</td>
+        <td>7pm-8pm</td>
+        <td><a>Donny Barclay</a></td>
+        <td>Redmond</td>
+        <td>Teaching</td>
+        <td>I can teach basic computer skills</td>
+        <td>Booked <a color="red">X</a></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>

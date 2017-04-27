@@ -12,8 +12,8 @@ exports.seed = function(knex, Promise) {
                     zip: 98104,
                     lat: 47.6015566,
                     long: -122.3323351,
-                    travel_radius: 5,
-                    advance_notice: 2,
+                    travel_radius: 25,
+                    advance_notice: 7,
                     user_id: 1
                 },
                 {

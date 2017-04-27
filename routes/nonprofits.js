@@ -44,6 +44,8 @@ router.get('/search', function(req, res, next) {
   //let user_id =req.session.userId
   let user_id= 4;
   let results={};
+  let err ={};
+  let skills =""
   let temp_arr = Object.keys(req.query);
 
   if (temp_arr.length === 0){
@@ -56,50 +58,42 @@ router.get('/search', function(req, res, next) {
 
     if (req.query!==undefined){
       if (!req.query.start_date_time){
-        console.log('in if statement when i shouldnt be', req.query.start_date_time);
-        res.send("Please select a date!")
+        err.message="Please select a date!"
       }
       if (!req.query.start_time) {
-        console.log(req.query.start_time);
-        res.send("Please select a start time!")
+        err.message="Please select a start time!"
       }
       if (!req.query.end_time) {
-        console.log(req.query.end_time);
-        res.send("Please select an end time!")
+        err.message="Please select an end time!"
       }
-      console.log(req.query.start_date_time);
       knex('non_profits')
       .select('lat','long')
       .where(user_id,4)
       .first()
       .then(location_info => {
         results.origin = location_info;
-        // return knex.select('lat','long', 'travel_radius','advance_notice').from('bookings').innerJoin('volunteers','bookings.volunteer_id', 'volunteers.user_id')
-        // .where('bookings.status','<>','booked')
-        // .andWhere(knex.raw(` DATE(start_date_time) = ${req.query.start_date_time}`))
-        // .andWhere(knex.raw(` EXTRACT('hour' FROM start_date_time)>=${req.query.start_time}`))
-        // .andWhere(knex.raw(` EXTRACT('hour' FROM end_date_time)<=${req.query.end_time}`))
-        // .andWhere(knex.raw(` EXTRACT('day' FROM ${req.query.end_time}) - EXTRACT('day' FROM CURRENT_DATE) <= advance_notice`))
-        return knex.raw(`SELECT lat,long,travel_radius,advance_notice FROM bookings INNER JOIN volunteers ON bookings.volunteer_id = volunteers.user_id WHERE bookings.status <> 'booked' AND DATE(start_date_time) = ${req.query.start_date_time} AND EXTRACT('hour' FROM start_date_time) >= ${req.query.start_time} AND EXTRACT('hour' FROM end_date_time)<=${req.query.end_time} AND (EXTRACT('day' FROM ${req.query.end_time}) - EXTRACT('day' FROM CURRENT_DATE)) <= advance_notice`)
+        return knex.select('lat','long', 'travel_radius','advance_notice','first_name','last_name','zip').from('bookings').innerJoin('volunteers','bookings.volunteer_id', 'volunteers.user_id')
+         .where('bookings.status','<>','booked')
+         .andWhere(knex.raw(` DATE(start_date_time) = '${req.query.start_date_time}'`))
+         .andWhere(knex.raw(` EXTRACT('hour' FROM start_date_time)>=${parseInt(req.query.start_time)}`))
+         .andWhere(knex.raw(` EXTRACT('hour' FROM end_date_time)<=${parseInt(req.query.end_time)}`))
+         .andWhere(knex.raw(`'${req.query.start_date_time}' - CURRENT_DATE <= advance_notice`))
       })
       .then(info =>{
-        //console.log(info);
         results.destinations = info;
         return functions.getDistances(results);
       })
       .then(distances =>{
-        results.distances = distances;
-        console.log(results);
-        //console.log(distances.rows[0].elements[0].d);
-        // let available =[];
-        // for(var index of results){
-        //   if (results.distances.rows)
-        // }
-        //console.log(results);
+        for (var index in results.destinations){
+          let distance = Math.round(distances.rows[0].elements[index].distance.value * 0.000621371192);
+          if (distance > results.destinations[index].travel_radius){
+            console.log("here");
+          delete (results.destinations[index])
+          }
+        }
+        console.log(results.destinations);
       })
-
     }
-
   })
   .then(() => {
     res.render('nonprofit/search', {results})
@@ -107,29 +101,18 @@ router.get('/search', function(req, res, next) {
   .catch((err) => {
     console.log(err);
   })
-
 });
 
-
-
-// router.get('/dashboard', function(req, res, next) {
-//   res.render('nonprofit/dashboard');
-// });
-// router.post('/profile/:username', function(req, res, next) {
-//   res.redirect(`nonprofits/profile/${username}`);
-// });
-// router.post('/booking', function(req, res, next) {
-//   res.redirect(`nonprofits/search/${username}`);
-// });
-// router.post('/', function(req, res, next) {
-//   res.redirect(`nonprofits/register/${username}`);
-// });
-// router.put('/profile/:username', function(req, res, next) {
-//   res.redirect(`nonprofit/profile/${username}`);
-// });
-// router.put('/booking/:id', function(req, res, next) {
-//   res.redirect(`nonprofit/search/${username}`);
-// });
+router.get('/dashboard/:username', function(req, res, next) {
+  let user_name = req.params.username
+  knex.from('users').innerJoin('non_profits', 'users.id', 'non_profits.user_id')
+  .select('*')
+  .where({user_name})
+  .first()
+  .then( profile => {
+    res.render('nonprofit/dashboard', {title : 'Profile', profile});
+  })
+});
 
 module.exports = router;
 // latlong('55436')
