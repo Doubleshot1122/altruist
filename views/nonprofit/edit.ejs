@@ -10,16 +10,18 @@
       <a class="div-display login-link" href="/nonprofits/dashboard/Mercy">Dashboard</a>
     </div>
    <% } %>
- </div>
-  <form class="well" method="POST" action="/nonprofits/edit/<%= edit %>">
+  </div>
+  <form class="well" method="POST" action="/nonprofits/register/<%= edit %>">
+    <% if (!profile.user_name) {%>"
     <div class="form-group form-input">
       <label for="user_name">Username</label>
       <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Username" value="<%= profile.user_name || '' %>">
-  </div>
-  <div class="form-group form-input">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="<%= profile.password || '' %>">
-  </div>
+    </div>
+     <% } %>
+    <div class="form-group form-input">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="<%= profile.password || '' %>">
+    </div>
     <div class="form-group form-input">
       <label for="name">Organization Name</label>
       <input type="text" name="name" class="form-control" id="name" value="<%= profile.name ||  '' %>">

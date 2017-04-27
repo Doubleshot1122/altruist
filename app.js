@@ -10,6 +10,8 @@ var override = require('method-override');
 var index = require('./routes/index');
 var volunteers = require('./routes/volunteers');
 var nonprofits = require('./routes/nonprofits');
+var sessions = require('./routes/sessions');
+
 
 var app = express();
 
@@ -30,6 +32,7 @@ app.use(override('_method'));
 app.use('/', index);
 app.use('/volunteers', volunteers);
 app.use('/nonprofits', nonprofits);
+app.use('/sessions', sessions);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

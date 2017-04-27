@@ -3,6 +3,7 @@ const express = require('express');
 const knex = require('../db');
 const router = express.Router();
 const functions = require('./miscellaneous')
+const bcrypt = require('bcrypt-as-promised');
 
 /* GET home page. */
 router.get('/register', function(req, res, next) {
@@ -10,7 +11,8 @@ router.get('/register', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', {title : 'Login'});
+  let error = {}
+  res.render('login', {title : 'Login', error});
 });
 
 router.get('/edit/:username', function(req, res, next) {
@@ -23,6 +25,53 @@ router.get('/edit/:username', function(req, res, next) {
     console.log(profile);
     res.render('nonprofit/edit', {title : 'Edit profile', profile});
   })
+});
+
+router.post('/register', (req, res, next) => {
+  let lat = 0;
+  let long = 0;
+  let user = {};
+  let nonprofit ={};
+  functions.getLatitudeLongitude(req.body.zip)
+  .then(result => {
+    lat = result.results[0].geometry.location.lat;
+    long = result.results[0].geometry.location.lng;
+   })
+   bcrypt.hash(req.body.password, 12)
+     .then((hashed_password) => {
+       user = { user_name: req.body.user_name,
+                    password: hashed_password,
+                    role : 2}
+       nonprofit ={name : req.body.name,
+                       type : req.body.type,
+                       description : req.body.description,
+                       contact_name : req.body.contact_name,
+                       contact_email : req.body.contact_email,
+                       contact_phone : req.body.phone_number,
+                       line_1 : req.body.line_1,
+                       line_2 : req.body.line_2,
+                       city : req.body.city,
+                       state : 'WA',
+                       zip : req.body.zip,
+                       lat : lat,
+                       long : long,
+                       comments : req.body.comments,
+                       user_id : 0}
+                       console.log(user, nonprofit);
+       return knex('users').insert(user, '*')
+     })
+     .then((user_info) => {
+       console.log(user_info);
+       nonprofit.user_id = user_info[0].id;
+       user.username = user_info[0].user_name
+       return knex('non_profits').insert(nonprofit, '*')
+    })
+    .then(info =>{
+      res.redirect(`/nonprofits/dashboard/${user.username}`);
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 router.get('/profile/:username', function(req, res, next) {
@@ -115,8 +164,3 @@ router.get('/dashboard/:username', function(req, res, next) {
 });
 
 module.exports = router;
-// latlong('55436')
-// .then(result => {
-//   console.log('inside route', result.results[0].geometry.location);
-//   res.render('nonprofit/login', {title : 'Register', result : result});
-// })
