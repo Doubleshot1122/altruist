@@ -1,4 +1,5 @@
 <% layout('../index') %>
+
 <div class="container col-mid-2">
   <div class="row">
     <div class="col-md-4">
@@ -10,7 +11,7 @@
       <div class="col-md-6 text-center">
       </div>
       <div class="col-md-6 text-center">
-        <a href="#">View Profile</a>
+        <a href="/volunteers/bio/<%= reqUserName%>">View Profile</a>
       </div>
     </div>
   </div>
@@ -22,15 +23,45 @@
     <div class="col-md-10">
       <h3>List of Volunteer Events</h3>
       <table class="table table-bordered">
-      <tr>
+      <tr class="info">
         <th>Start Date/Time</th>
         <th>Start Date/Time</th>
         <th>Duration</th>
         <th>Service</th>
+        <th>Status</th>
         <th>Cancel</th>
       </tr>
       <tr>
-        
+        <td>May 1, 2017 09:00:00</td>
+        <td>May 1, 2017 11:00:00</td>
+        <td>2 Hours</td>
+        <td>Teaching</td>
+        <td>BOOKED</td>
+        <td class="text-center"><a href="#">X</a></td>
+      </tr>
+      <tr>
+        <td>May 2, 2017 13:00:00</td>
+        <td>May 2, 2017 16:00:00</td>
+        <td>3 Hours</td>
+        <td>Shopping</td>
+        <td>BOOKED</td>
+        <td class="text-center"><a href="#">X</a></td>
+      </tr>
+      <tr>
+        <td>May 5, 2017 09:00:00</td>
+        <td>May 5, 2017 13:00:00</td>
+        <td>4 Hours</td>
+        <td>Gardening</td>
+        <td>BOOKED</td>
+        <td class="text-center"><a href="#">X</a></td>
+      </tr>
+      <tr>
+        <td>May 5, 2017 14:00:00</td>
+        <td>May 5, 2017 15:00:00</td>
+        <td>1 Hours</td>
+        <td>Reading</td>
+        <td>CANCELLED</td>
+        <td><a href="#"></a></td>
       </tr>
       </table>
     </div>
