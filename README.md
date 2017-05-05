@@ -4,7 +4,7 @@ Altruist more than just a website, it is a gateway into volunteering.  Altruist 
 
 Check it out for yourself: https://altruistic.herokuapp.com/
 
-<<Insert pages and descriptions here>>  
+![homepage](screenshots/homepage.png) 
 
 Technologies used:
 * Bootstrap
@@ -15,3 +15,31 @@ Technologies used:
 * Knex js
 * PostgrSQL
 * Heroku
+
+Project Members:
+* Betty Chempananical
+* Donny Barclay
+
+Installation Instructions:
+Fork and clone
+Run NPM Install
+Create a postgresql database called
+  ```
+  createdb altruistic_dev
+  ```
+Run migration files:
+  ```
+  npm run knex migrate:latest
+  ```
+Run seed files:
+  ```
+  npm run knex seed:run
+  ```
+Start server
+  ```
+  npm run dev
+  ```
+In a browser navigate to:
+  ```
+  localhost:3000
+  ```
