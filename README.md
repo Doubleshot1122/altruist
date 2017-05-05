@@ -6,17 +6,19 @@ Check it out for yourself: https://altruistic.herokuapp.com/
 
 ![homepage](screenshots/homepage.png)
 
-### Nonprofit Experience
+### All nonprofits must register before they can begin using the site
 ![register](screenshots/register.png)
 
+### Nonprofits and volunteers can see the profile pages of the nonprofits
 ![nonprofit_profile](screenshots/nonprofit_profile.png)
 
+### Nonprofits also have access to dashboard that shows all booked volunteers
 ![nonrofit_dashboard](screenshots/nonrofit_dashboard.png)
 
+### Finally nonprofits can search for new volunteers with a push of a button
 ![nonprofit_search](screenshots/nonprofit_search.png)
 
-
-### Volunteer Experience
+### On the volunteer's dashboard they can view or cancel upcoming events
 ![volunteer_dashboard](screenshots/volunteer_dashboard.png)
 
 Technologies used:
