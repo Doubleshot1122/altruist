@@ -4,7 +4,16 @@ Altruist more than just a website, it is a gateway into volunteering.  Altruist 
 
 Check it out for yourself: https://altruistic.herokuapp.com/
 
-![homepage](screenshots/homepage.png) 
+![homepage](screenshots/homepage.png)
+
+### Nonprofit Experience
+![register](screenshots/register.png)
+![nonprofit_profile](screenshots/nonprofit_profile.png)
+![nonrofit_dashboard](screenshots/nonrofit_dashboard.png)
+![nonprofit_search](screenshots/nonprofit_search.png)
+
+### Volunteer Experience
+![volunteer_dashboard](screenshots/volunteer_dashboard.png)
 
 Technologies used:
 * Bootstrap
